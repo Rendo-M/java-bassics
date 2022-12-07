@@ -8,7 +8,7 @@ public class Homework1 {
     // System.out.println(triangle_number(n));
     // System.out.println(factor(n)); 
     // eratosfen(1000); 
-    calculator();
+    // calculator();
     // System.out.println(find_questionmarks("??"));
     solve_equation("2? + ?? = ??");
     }
