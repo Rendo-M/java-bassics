@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Homework1 {
     
@@ -9,7 +8,7 @@ public class Homework1 {
     // System.out.println(triangle_number(n));
     // System.out.println(factor(n)); 
     // eratosfen(1000); 
-    // calculator();
+    calculator();
     // System.out.println(find_questionmarks("??"));
     solve_equation("2? + ?? = ??");
     }
@@ -144,10 +143,12 @@ public class Homework1 {
     }        
 
     public static void calculator() {
+        Scanner sc =  new Scanner(System.in);
+            
         while (true){
-            double num1 = Double.parseDouble(get_data_from_user("Введите первое число >>"));       
-            double num2 = Double.parseDouble(get_data_from_user("Введите второе число >>"));
-            String action =  get_data_from_user("Введите действие >>");
+            double num1 = Double.parseDouble(get_data_from_user(sc,"Введите первое число >>"));       
+            double num2 = Double.parseDouble(get_data_from_user(sc,"Введите второе число >>"));
+            String action =  get_data_from_user(sc,"Введите действие >>");
             Double res = 0.0; 
             switch (action) {
                 case "+":
@@ -164,18 +165,25 @@ public class Homework1 {
                     break;
             }
             System.out.println(num1 + " " + action + " " + num2 + " = " + res);
-            if (get_data_from_user("Для выхода введите q >>").equals("q"))
+            if (get_data_from_user(sc, "Для выхода введите q >>").equals("q")){
+                
                 break;    
+            
+            }
         }    
+        sc.close();
     }
 
-    public static String get_data_from_user(String text) {
+    public static String get_data_from_user(Scanner sc ,String text) {
         
+        
+        if (text.equals("finish")){
+            sc.close();
+            return null;
+        }
         System.out.println();
         System.out.print(text);
-        Scanner sc =  new Scanner(System.in);
         String res =  sc.nextLine();
-        
         
         return res;       
         
