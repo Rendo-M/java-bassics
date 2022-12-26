@@ -8,14 +8,14 @@ public class Notebook {
     int diag;
     String os;
     int price;
-    int prodDate;
+    String prodDate;
     int guaranty;
     int stock;
     int memSlots;
 
     Notebook(Operative memory, HDD disk, Processor proc,
     Video video, String Model, int diag, String os,
-    int price, int prodDate, int guaranty, int stock, int memSlots){
+    int price, String prodDate, int guaranty, int stock, int memSlots){
          this.memory = memory;
          this.disk = disk;
          this.proc = proc;
@@ -30,4 +30,25 @@ public class Notebook {
          this.memSlots = memSlots;
     }
     
+    Notebook(Operative memory, HDD disk, Processor proc,
+    Video video, String[] params){
+         this.memory = memory;
+         this.disk = disk;
+         this.proc = proc;
+         this.video = video;
+         this.Model = params[0];
+         this.diag = Integer.parseInt(params[1]);
+         this.os = params[2];
+         this.price = Integer.parseInt(params[3]);
+         this.prodDate = params[4];
+         this.guaranty = Integer.parseInt(params[5]);
+         this.stock = Integer.parseInt(params[6]);
+         this.memSlots = Integer.parseInt(params[7]);
+    }
+    public String card(){
+        String cardNotebook = new String();
+        cardNotebook = this.Model  + "\n" + "Price: " + this.price  + "\n" + 
+        "Screen Diag inches: " + this.diag +"\n" + this.disk.card() + this.proc.card() + this.video.card()+this.memory.card();
+        return cardNotebook;
+    }
 }
