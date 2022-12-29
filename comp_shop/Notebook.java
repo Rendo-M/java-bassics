@@ -51,4 +51,20 @@ public class Notebook {
         "Screen Diag inches: " + this.diag +"\n" + this.disk.card() + this.proc.card() + this.video.card()+this.memory.card();
         return cardNotebook;
     }
+
+    public boolean compareDiag(int diag){
+        return this.diag >= diag;
+    }
+
+    public boolean comparePrice(int price){
+        return this.price <= price;
+    }
+
+    public boolean filterBase(Notebook book){
+        return this.compareDiag(book.diag) && this.comparePrice(book.price);
+    }
+
+    public boolean filter(Notebook book){
+        return this.filterBase(book) && this.disk.filter(book.disk) && this.memory.filter(book.memory) && this.proc.filter(book.proc) && this.video.filter(book.video);
+    }
 }

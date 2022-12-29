@@ -40,4 +40,8 @@ public class Video {
     public boolean checkMem(int mem) {
         return this.memory >= mem;
     }    
+    public boolean filter(Video videoCard) {
+        return this.checkBus(videoCard.bus) && this.checkFreq(videoCard.freq) && this.checkMem(videoCard.memory);
+        
+    }
 }

@@ -22,10 +22,13 @@ public class Operative {
         return this.size == memo.size && this.freq == memo.freq && this.planks == memo.planks;
     }
     public boolean checkSize(int size){
-        return this.size * this.planks >= size;
+        return this.size >= size;
     }
 
     public boolean checkFreq(int freq){
         return this.freq >= freq;
+    }
+    public boolean filter(Operative memory){
+        return this.checkSize(memory.size) && this.checkFreq(memory.freq);
     }
 }

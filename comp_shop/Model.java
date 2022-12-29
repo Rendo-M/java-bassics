@@ -4,14 +4,38 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Model {
     List<Notebook> books;
+    List<Notebook> filtered;
+    Notebook filterBook;
+    public String[] params;
+    public String[] valueNames;
+    public HashMap<String, Integer> filter;
+    public HashMap<String,String> depend;
 
     Model() throws IOException{
         List<String> data = this.loadCSV();
         book(data); 
+        params = new String[]{"Частота памяти: ", "Размер памяти: ", "Размер диска: ", "Число ядер CPU: ", 
+                                "частота CPU: ", "видеопамять: ", "видеошина: ", "частота шины: ", "диагональ: ", "цена: "};
+        valueNames = new String[]{"memFreq", "memSize", "sizeHDD", "cores", "freqCPU", 
+            "memVideo", "bus", "freqVideo", "diag", "price"};
+        depend = new HashMap<>();
+        for (int i = 0; i < params.length; i++) {
+            depend.put(valueNames[i], params[i]);
+        }    
+        
+        filter = new HashMap<>();
+        this.clearFilter();
+            
+        }
+    
+    public void clearFilter(){
+        for (String val : valueNames) 
+            filter.put(val, 0);
     }
 
     public List<String> loadCSV() throws IOException {
@@ -26,6 +50,32 @@ public class Model {
             line = reader.readLine();
         }
         return res;
+     }
+
+
+     public void filterNotebook(){
+        if (this.filterBook != null){
+            filtered = new ArrayList<>();
+            for (Notebook notebook : books) {
+                if (notebook.filter(filterBook)){
+                    filtered.add(notebook);
+                }
+            }
+        }
+     }
+
+     public void loadFilter(){
+        createFilterObj(filter.get("memFreq"), filter.get("memSize"), filter.get("sizeHDD"), filter.get("cores"), 
+        filter.get("freqCPU"), filter.get("memVideo"), filter.get("bus"), filter.get("freqVideo"), 
+        filter.get("diag"), filter.get( "price"));
+         }
+     public void createFilterObj(int memFreq, int memSize, int sizeHDD, int cores, int freqCPU, 
+                            int memVideo, int bus, int freqVideo, int diag, int price){
+        filterBook = new Notebook(  new Operative(memSize, memFreq, 0), 
+                                    new HDD(null, null, sizeHDD), 
+                                    new Processor(null, cores, freqCPU, 0),
+                                    new Video(null, null, 0, 0, 0), 
+                                    null, diag, null, price, null, 0, 0, 0);
      }
 
      public void book(List<String> notebooks) {

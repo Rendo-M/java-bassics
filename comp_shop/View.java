@@ -23,9 +23,9 @@ public class View {
         }
     }
 
-    public int getAnswer() {
-        System.out.print("select operation ->> ");
-        return scan.nextInt();
+    public String getAnswer(String prompt) {
+        System.out.print(prompt);
+        return scan.next();
     }
 
     public void showCards(List<Notebook> books){

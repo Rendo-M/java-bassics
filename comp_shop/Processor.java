@@ -36,4 +36,8 @@ public class Processor {
     public boolean compare(Processor proc){
         return this.core == proc.core && this.freq == proc.freq && this.cash == proc.cash;
     }
+
+    public boolean filter(Processor cpu){
+        return this.checkCores(cpu.core) && this.checkFreq(cpu.freq);
+    }
 }
