@@ -72,7 +72,7 @@ public class Model {
      public void createFilterObj(int memFreq, int memSize, int sizeHDD, int cores, int freqCPU, 
                             int memVideo, int bus, int freqVideo, int diag, int price){
         filterBook = new Notebook(  new Operative(memSize, memFreq, 0), 
-                                    new HDD(null, null, sizeHDD), 
+                                    new HDD(null, "", sizeHDD), 
                                     new Processor(null, cores, freqCPU, 0),
                                     new Video(null, null, 0, 0, 0), 
                                     null, diag, null, price, null, 0, 0, 0);

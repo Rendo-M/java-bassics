@@ -1,11 +1,6 @@
 package java_course;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Random;
 
-import javax.xml.crypto.Data;
 
 class cat {
     String name;

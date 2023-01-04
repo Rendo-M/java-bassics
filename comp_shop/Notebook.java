@@ -1,4 +1,7 @@
 package comp_shop;
+
+import javax.lang.model.util.ElementScanner14;
+
 public class Notebook {
     Operative memory;
     HDD disk;
@@ -61,10 +64,14 @@ public class Notebook {
     }
 
     public boolean filterBase(Notebook book){
-        return this.compareDiag(book.diag) && this.comparePrice(book.price);
+        if (price != 0)
+            return this.compareDiag(book.diag) && this.comparePrice(book.price);
+        else 
+            return this.compareDiag(book.diag);    
     }
 
     public boolean filter(Notebook book){
+
         return this.filterBase(book) && this.disk.filter(book.disk) && this.memory.filter(book.memory) && this.proc.filter(book.proc) && this.video.filter(book.video);
     }
 }

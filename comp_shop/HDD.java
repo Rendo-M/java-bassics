@@ -30,12 +30,10 @@ public class HDD {
         return this.size >= size;
     }
     public boolean filter(HDD filterDisk){
-        if (filterDisk.type != null || filterDisk.type.equals("")){
-            return this.checkSize(filterDisk.size) && this.checkType(filterDisk.type);
-        }
+
         return this.checkSize(filterDisk.size);
     }
-    
+
     public boolean checkType(String type){
         return this.type.equals(type);
 }
